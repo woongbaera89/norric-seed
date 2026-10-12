@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { Button, Input } from "@norric/design-system";
 import { addHabit, type Repeat } from "@norric/utils";
 import { useStore } from "../../useStore";
+import { track } from "../../../lib/analytics";
 
 const ICONS = ["💧", "🏃", "📖", "🧘", "✍️", "🍎"];
 const REPEATS: [Repeat, string][] = [["daily", "매일"], ["weekdays", "평일"], ["weekends", "주말"], ["custom", "직접"]];
@@ -23,6 +24,7 @@ export default function NewHabit() {
   const save = () => {
     if (!valid) return;
     update((s) => addHabit(s, { name, emoji, repeat, days: repeat === "custom" ? days : [], reminder: remind ? time : null }));
+    track("habit_created", { icon: emoji, repeat, reminder: remind, reminder_time: remind ? time : null });
     r.push("/today");
   };
   return (

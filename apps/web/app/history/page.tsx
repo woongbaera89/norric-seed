@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { dayStatus, monthGrid, monthRate, overallStreak, parseDateKey } from "@norric/utils";
 import { useStore } from "../useStore";
+import { track } from "../../lib/analytics";
 import { AppTabBar } from "../AppTabBar";
 
 export default function History() {
@@ -9,6 +10,10 @@ export default function History() {
   const t = parseDateKey(today);
   const [ym, setYm] = useState({ y: t.getFullYear(), m: t.getMonth() + 1 });
   const shift = (n: number) => setYm(({ y, m }) => { const d = new Date(y, m - 1 + n, 1); return { y: d.getFullYear(), m: d.getMonth() + 1 }; });
+  useEffect(() => {
+    if (ready) track("history_viewed", { current_streak: overallStreak(state, today), month_rate: monthRate(state, t.getFullYear(), t.getMonth() + 1, today) });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready]);
   const nav = { background: "none", border: 0, fontSize: 20, cursor: "pointer", padding: "0 8px" };
   return (
     <main className="app">
