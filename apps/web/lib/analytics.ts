@@ -12,6 +12,9 @@ export type AnalyticsEvents = {
   habit_checked: { habit_id: string; streak: number };
   habit_unchecked: { habit_id: string };
   history_viewed: { current_streak: number; month_rate: number };
+  magic_link_sent: Record<string, never>;
+  login_completed: { migrated_habits: number };
+  logout: Record<string, never>;
 };
 
 /** Analytics off in tests, when explicitly disabled, or under automation (headless screenshots). */
@@ -45,4 +48,14 @@ export function captureError(error: unknown, extra?: Record<string, unknown>) {
   initAnalytics();
   if (!started) return;
   posthog.captureException(error, extra);
+}
+
+export function identify(id: string, email?: string) {
+  initAnalytics();
+  if (!started) return;
+  posthog.identify(id, email ? { email } : undefined);
+}
+
+export function reset() {
+  if (started) posthog.reset();
 }
