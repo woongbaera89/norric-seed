@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button, IconButton, Input, ReminderRow, TimePicker } from "@norric/design-system";
+import { Button, IconButton, Input, ReminderRow, Switch, TimePicker } from "@norric/design-system";
 import { addHabit, type Repeat } from "@norric/utils";
 import { useStore } from "../../useStore";
 import { track } from "../../../lib/analytics";
@@ -43,7 +43,7 @@ export default function NewHabit() {
         <button key={w} className="chip" style={{ padding: 0, width: 38 }} aria-pressed={days.includes(i)} onClick={() => setDays((d) => (d.includes(i) ? d.filter((x) => x !== i) : [...d, i]))}>{w}</button>))}</div>}
       <div className="label">알림</div>
       <ReminderRow value={remind ? time : null} onOpen={() => setPicker(true)}
-        toggle={<button className="switch" role="switch" aria-checked={remind} aria-label="알림 켜기" onClick={() => setRemind((v) => !v)} />} />
+        toggle={<Switch checked={remind} onChange={setRemind} aria-label="알림 켜기" />} />
       <TimePicker open={picker} value={time} onCancel={() => setPicker(false)} onConfirm={(v) => { setTime(v); setPicker(false); }} />
       <div style={{ marginTop: "auto", paddingTop: 32 }}><Button disabled={!valid} onClick={save}>저장하기</Button></div>
     </main>

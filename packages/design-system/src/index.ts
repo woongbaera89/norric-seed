@@ -8,3 +8,4 @@ export * from "./components/IconButton.js";
 export * from "./components/TimePicker.js";
 export * from "./components/ReminderRow.js";
 export * from "./components/time.js";
+export * from "./components/Switch.js";
