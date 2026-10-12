@@ -3,6 +3,7 @@ import Link from "next/link";
 import { HabitItem } from "@norric/design-system";
 import { habitStreak, isDone, isScheduled, parseDateKey, progress, toggleDone } from "@norric/utils";
 import { useStore } from "../useStore";
+import { track } from "../../lib/analytics";
 import { AppTabBar } from "../AppTabBar";
 
 const WD = "일월화수목금토";
@@ -33,7 +34,12 @@ export default function Today() {
         {ready && habits.map((h) => {
           const streak = habitStreak(state, h, today);
           return <HabitItem key={h.id} name={h.name} emoji={h.emoji} checked={isDone(state, h.id, today)}
-            meta={streak ? `🔥 ${streak}일 연속` : "오늘 시작해요"} onToggle={() => update((s) => toggleDone(s, h.id, today))} />;
+            meta={streak ? `🔥 ${streak}일 연속` : "오늘 시작해요"} onToggle={() => {
+              const was = isDone(state, h.id, today);
+              update((s) => toggleDone(s, h.id, today));
+              if (was) track("habit_unchecked", { habit_id: h.id });
+              else track("habit_checked", { habit_id: h.id, streak: habitStreak(toggleDone(state, h.id, today), h, today) });
+            }} />;
         })}
       </div>
       <AppTabBar active="today" />

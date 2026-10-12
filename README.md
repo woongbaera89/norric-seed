@@ -27,3 +27,8 @@ Font: Pretendard (npm `pretendard`, variable dynamic subset).
 
 ## M2 screens
 `/` intro (first visit; else → /today), `/today`, `/habits/new`, `/history`, `/settings` (placeholder). State: localStorage key `norric-seed:v1` via `@norric/utils` store (reset: clear site data).
+
+## Analytics / Error tracking (PostHog)
+`posthog-js` init in `apps/web/lib/analytics.ts` (provider in `app/PostHogProvider.tsx`). Env: `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST` (defaults: Norric public project key, https://us.i.posthog.com). Disable with `NEXT_PUBLIC_POSTHOG_DISABLED=1`; always off in tests and under automation (navigator.webdriver).
+Events: intro_viewed, intro_start_clicked, intro_other_habit_clicked, habit_created, habit_checked, habit_unchecked, history_viewed, plus $pageview and $exception.
+Production: https://norric-seed.vercel.app

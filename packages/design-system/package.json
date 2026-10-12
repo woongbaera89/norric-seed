@@ -1,1 +1,31 @@
-{"name":"@norric/design-system","version":"0.0.0","private":true,"type":"module","main":"dist/index.js","types":"dist/index.d.ts","exports":{".":{"types":"./dist/index.d.ts","default":"./dist/index.js"},"./tokens.css":"./src/tokens.css","./styles.css":"./src/styles.css"},"scripts":{"build":"tsc -p tsconfig.json"},"peerDependencies":{"react":"^19.0.0"},"devDependencies":{"@norric/config":"workspace:*","@types/react":"^19.0.0","react":"^19.0.0","typescript":"^5.6.0"}}
+{
+  "name": "@norric/design-system",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./tokens.css": "./src/tokens.css",
+    "./styles.css": "./src/styles.css"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@norric/config": "workspace:*",
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "typescript": "^5.6.0",
+    "eslint": "^9.30.0"
+  }
+}

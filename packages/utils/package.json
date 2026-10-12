@@ -1,1 +1,26 @@
-{"name":"@norric/utils","version":"0.0.0","private":true,"type":"module","main":"dist/index.js","types":"dist/index.d.ts","exports":{".":{"types":"./dist/index.d.ts","default":"./dist/index.js"}},"scripts":{"build":"tsc -p tsconfig.json","test":"vitest run"},"devDependencies":{"@norric/config":"workspace:*","typescript":"^5.6.0","vitest":"^3.2.0"}}
+{
+  "name": "@norric/utils",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@norric/config": "workspace:*",
+    "typescript": "^5.6.0",
+    "vitest": "^3.2.0",
+    "eslint": "^9.30.0"
+  }
+}

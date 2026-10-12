@@ -5,12 +5,15 @@ import Link from "next/link";
 import { Button } from "@norric/design-system";
 import { startWithWater } from "@norric/utils";
 import { useStore } from "./useStore";
+import { track } from "../lib/analytics";
 
 export default function Intro() {
   const { state, ready, update } = useStore();
   const r = useRouter();
   useEffect(() => { if (ready && state.onboarded) r.replace("/today"); }, [ready, state.onboarded, r]);
-  if (!ready || state.onboarded) return null;
+  const show = ready && !state.onboarded;
+  useEffect(() => { if (show) track("intro_viewed"); }, [show]);
+  if (!show) return null;
   return (
     <main className="app" style={{ textAlign: "center", paddingBottom: 32 }}>
       <svg width="224" height="224" viewBox="0 0 224 224" style={{ margin: "64px auto 40px" }} aria-hidden>
@@ -25,8 +28,8 @@ export default function Intro() {
       <h1 style={{ font: "var(--text-display)", fontSize: 28, margin: "16px 0 12px" }}>물 마시기 습관부터<br />만들어볼까요?</h1>
       <p style={{ color: "var(--color-text-secondary)", margin: 0, fontSize: 15 }}>하루 물 2L, 가장 쉬운 첫 걸음이에요.<br />체크 한 번이면 오늘 목표 달성!</p>
       <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", gap: 16 }}>
-        <Button onClick={() => { update((s) => startWithWater(s)); r.push("/today"); }}>물 마시기로 시작하기</Button>
-        <Link href="/habits/new" style={{ color: "var(--color-text-secondary)", font: "var(--text-body)", fontSize: 15, textDecoration: "none" }}>다른 습관 고를게요</Link>
+        <Button onClick={() => { track("intro_start_clicked", { habit: "water" }); update((s) => startWithWater(s)); r.push("/today"); }}>물 마시기로 시작하기</Button>
+        <Link href="/habits/new" onClick={() => track("intro_other_habit_clicked")} style={{ color: "var(--color-text-secondary)", font: "var(--text-body)", fontSize: 15, textDecoration: "none" }}>다른 습관 고를게요</Link>
       </div>
     </main>
   );
