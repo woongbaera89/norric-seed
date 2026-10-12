@@ -1,6 +1,6 @@
 export const color = {
   bg: "#F7F7F5", surface: "#FFFFFF", textPrimary: "#16181D", textSecondary: "#6B7280",
-  border: "#E5E7EB", primary: "#3B5BFD", primarySoft: "#E8EDFF", success: "#22B07D", streak: "#FF7A45",
+  border: "#E5E7EB", primary: "#3B5BFD", primarySoft: "#E8EDFF", success: "#22B07D", streak: "#FF7A45", error: "#E5484D",
 } as const;
 export const typography = {
   display: { size: 32, weight: 700, lineHeight: 1.3 },
