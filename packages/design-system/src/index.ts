@@ -4,3 +4,7 @@ export * from "./components/Input.js";
 export * from "./components/HabitItem.js";
 export * from "./components/TabBar.js";
 export * from "./components/icons.js";
+export * from "./components/IconButton.js";
+export * from "./components/TimePicker.js";
+export * from "./components/ReminderRow.js";
+export * from "./components/time.js";
