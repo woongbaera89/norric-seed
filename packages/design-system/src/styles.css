@@ -1,0 +1,21 @@
+@import "./tokens.css";
+.nr-btn{font:var(--text-body);font-weight:600;height:52px;padding:0 var(--space-6);border-radius:var(--radius-md);border:1px solid transparent;cursor:pointer;width:100%}
+.nr-btn--primary{background:var(--color-primary);color:#fff}
+.nr-btn--secondary{background:var(--color-surface);color:var(--color-text-primary);border-color:var(--color-border)}
+.nr-btn:disabled{opacity:.4;cursor:not-allowed}
+.nr-habit{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-4);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);width:100%;text-align:left;cursor:pointer;font:var(--text-body);color:var(--color-text-primary)}
+.nr-habit__emoji{width:40px;height:40px;border-radius:var(--radius-sm);background:var(--color-primary-soft);display:grid;place-items:center;font-size:20px}
+.nr-habit__body{flex:1;display:flex;flex-direction:column}
+.nr-habit__name{font:var(--text-heading)}
+.nr-habit__meta{font:var(--text-caption);color:var(--color-text-secondary)}
+.nr-habit__streak{font:var(--text-micro);color:var(--color-streak);background:#FFF1EA;padding:2px var(--space-2);border-radius:var(--radius-full)}
+.nr-habit__check{width:28px;height:28px;border-radius:var(--radius-full);border:1.75px solid var(--color-border);display:grid;place-items:center;color:#fff}
+.nr-habit--checked .nr-habit__check{background:var(--color-success);border-color:var(--color-success)}
+.nr-habit--checked .nr-habit__name{color:var(--color-text-secondary);text-decoration:line-through}
+.nr-field{display:flex;flex-direction:column;gap:var(--space-2)}
+.nr-field__label{font:var(--text-caption);color:var(--color-text-secondary)}
+.nr-input{font:var(--text-body);height:52px;padding:0 var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text-primary);outline:none}
+.nr-input:focus{border-color:var(--color-primary);box-shadow:0 0 0 3px var(--color-primary-soft)}
+.nr-tabbar{display:flex;background:var(--color-surface);border-top:1px solid var(--color-border);padding:var(--space-2) 0 var(--space-3)}
+.nr-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:var(--space-1);background:none;border:0;cursor:pointer;font:var(--text-micro);color:var(--color-text-secondary)}
+.nr-tab[aria-current="page"]{color:var(--color-primary)}
